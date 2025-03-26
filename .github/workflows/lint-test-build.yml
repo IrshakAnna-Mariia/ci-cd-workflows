@@ -1,4 +1,4 @@
-name: Deploy project
+name: Deploy project with lint-test-build checks
 on: push
 jobs:
   lint:
