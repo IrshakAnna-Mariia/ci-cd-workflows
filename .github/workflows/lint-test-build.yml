@@ -1,5 +1,5 @@
 name: Deploy project with lint-test-build checks
-on: push
+on: workflow_dispatch
 jobs:
   lint:
     runs-on: ubuntu-latest
