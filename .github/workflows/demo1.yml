@@ -1,7 +1,7 @@
 name: Demo 1
 on:
   pull_request:
-    types: [opened, edited, synchronize]
+    types: [opened, edited]
   workflow_dispatch:
   push:
     branches:
