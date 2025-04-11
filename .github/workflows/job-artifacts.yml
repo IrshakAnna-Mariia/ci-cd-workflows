@@ -1,32 +1,38 @@
-name: Deploy project
-on: workflow_dispatch
+name: Deploy website
+on:
+  push:
+    branches:
+      - main
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
         uses: actions/checkout@v3
-      - name: Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
       - name: Install dependencies
         run: npm ci
-      - name: Run tests
+      - name: Lint code
+        run: npm run lint
+      - name: Test code
         run: npm run test
-  deploy:
+  build:
     needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Get code
         uses: actions/checkout@v3
-      - name: Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
       - name: Install dependencies
         run: npm ci
-      - name: Build project
+      - name: Build website
         run: npm run build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy
         run: echo "Deploying..."
