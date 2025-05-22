@@ -5,7 +5,7 @@ on:
       - main
       - dev
 env:
-  NAME_OF_ENV: CI/CD learning
+  NAME_OF_ENV: ${{ secrets.NAME_OF_ENV }}
 jobs:
   test:
     runs-on: ubuntu-latest
