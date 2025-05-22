@@ -1,9 +1,5 @@
 name: Deploy project with environment variables
-on:
-  push:
-    branches:
-      - main
-      - dev
+on: workflow_dispatch
 env:
   NAME_OF_ENV: ${{ secrets.NAME_OF_ENV }}
 jobs:
